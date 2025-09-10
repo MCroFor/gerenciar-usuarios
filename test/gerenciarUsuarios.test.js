@@ -4,12 +4,24 @@ const { expect } = require('chai');
 describe('Testar as funções de Gestão de Usuários', function () {
     it('Validar que posso adicionar um novo usuário na lista', function () {
         // 1. Adicionar um novo nome na lista de usuários
-        adicionarNovoUsuario('Maria');
+        adicionarNovoUsuario({   
+            nome: 'Tadeu', 
+            email: 'tadeu@email.com',
+            idade: 35
+        });
 
         // 2. Retornar a lista de usuários na caixa lista de usuários
         const listaDeUsuarios = retornarUsuarios();
 
-        // 3. Comparar se o novo nome está no fim da lista de usuários
-        expect(listaDeUsuarios.at(-1)).to.equal('Maria');
+         // 3. Comparar se o novo nome está no fim da lista de usuários
+        //expect(listaDeUsuarios.at(-1).nome).to.equal('Maria');
+       // expect(listaDeUsuarios.at(-1).email).to.equal('maria@email.com');
+        expect(listaDeUsuarios.at(-1)).to.eql({ // to.deep.equal
+            nome: 'Tadeu', 
+            email: 'tadeu@email.com',
+            idade: 35
+        });
+        
     });
+
 }); 
